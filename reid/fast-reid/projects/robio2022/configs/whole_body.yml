@@ -1,0 +1,30 @@
+_BASE_: ../../../configs/Base-bagtricks.yml
+
+MODEL:
+  META_ARCHITECTURE: MaskGuidedBaseline
+
+  BACKBONE:
+    DEPTH: 18x
+    FEAT_DIM: 512
+
+  HEADS:
+    NAME: EmbeddingMaskHead
+
+  LOSSES:
+    NAME: ("CrossEntropyLoss", "TripletLoss", "MaskLoss")
+
+DATASETS:
+  NAMES: ("ZJRR",)
+  TESTS: ("ZJRR",)
+  IMAGE_ROOT: ../../datasets/reid/body_images
+  INDEX_PREFIX: ../../datasets/reid/index_txt/iros2022_fisheye
+ 
+SOLVER:
+  WARMUP_ITERS: 0
+  MAX_EPOCH: 10
+  STEPS: [5, ]
+
+  CHECKPOINT_PERIOD: 10
+
+TEST:
+  EVAL_PERIOD: 10

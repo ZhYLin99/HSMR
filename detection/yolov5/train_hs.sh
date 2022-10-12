@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES='0' python train.py --local_rank=0 --noval --weights pretrained_model/yolov5s.pt --batch-size 32 --workers 8 --data data/hs_coco.yaml --project runs/hs/ --cfg yolov5s.yaml
